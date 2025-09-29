@@ -31,6 +31,8 @@ export default function EventsPage() {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
+  const [manualLogout, setManualLogout] = useState(false);
+
   const router = useRouter();
 
   const [viewMode, setViewMode] = useState<"calendar" | "list">("calendar");
@@ -39,7 +41,7 @@ export default function EventsPage() {
   };
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!loading && !user && !manualLogout) {
       router.push("/login");
       toast.info("Please log in to access your events", {
         position: "bottom-center",
@@ -108,6 +110,7 @@ export default function EventsPage() {
             ":hover": { background: "#ced4da" },
           }}
           onClick={async () => {
+            setManualLogout(true);
             await logout();
             router.push("/login");
             toast.success("Logged out successfully", {

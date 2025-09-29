@@ -46,7 +46,7 @@ function Register() {
   return (
     <form
       onSubmit={handleRegister}
-      className="shadow w-96 flex flex-col rounded-2xl p-8 self-center"
+      className="shadow w-xl flex flex-col rounded-2xl p-8 self-center"
     >
       <h3 className="mb-3">Sign Up</h3>
 
